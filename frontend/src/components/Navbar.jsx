@@ -1,9 +1,18 @@
-function Navbar() {
+function Navbar({ darkMode }) {
     return (
-        <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6">
-
+        <header
+            className={`h-16 border-b flex items-center justify-between px-6 transition-colors ${
+                darkMode
+                    ? "bg-slate-900 border-slate-800"
+                    : "bg-white border-slate-200"
+            }`}
+        >
             <div>
-                <p className="text-sm text-slate-500">
+                <p
+                    className={`text-sm ${
+                        darkMode ? "text-slate-400" : "text-slate-500"
+                    }`}
+                >
                     Student Task Manager
                 </p>
             </div>
@@ -15,10 +24,14 @@ function Navbar() {
                 </div>
 
                 <div className="hidden sm:block">
-                    <p className="text-sm font-medium text-slate-900">
-                        Student
-                    </p>
-                    <p className="text-xs text-slate-500">
+                <p
+                    className={`text-sm font-medium ${
+                        darkMode ? "text-white" : "text-slate-900"
+                    }`}
+                >
+                    Student
+                </p>
+                <p className="text-xs text-slate-500">
                         Keep making progress
                     </p>
                 </div>

@@ -10,6 +10,7 @@ function App() {
     const [showTaskForm, setShowTaskForm] = useState(false);
     const [taskToEdit, setTaskToEdit] = useState(null);
     const [taskFilter, setTaskFilter] = useState("All");
+    const [darkMode, setDarkMode] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [taskToDelete, setTaskToDelete] = useState(null);
 
@@ -136,17 +137,25 @@ function App() {
     });
 
     return (
-        <Layout>
+        <Layout darkMode={darkMode} setDarkMode={setDarkMode}>
             {/* Page Header */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 
                 <div>
-                    <h2 className="text-2xl font-bold text-slate-900">
-                        Good morning, Student 👋
+                    <h2
+                        className={`text-2xl font-bold ${
+                            darkMode ? "text-white" : "text-slate-900"
+                        }`}
+                    >
+                        Your study flow, at a glance.
                     </h2>
 
-                    <p className="mt-1 text-slate-500">
-                        Here's what's happening with your tasks today.
+                    <p
+                        className={`mt-1 ${
+                            darkMode ? "text-slate-400" : "text-slate-500"
+                        }`}
+                    >
+                        Stay on top of what matters most.
                     </p>
                 </div>
 
@@ -162,12 +171,26 @@ function App() {
             {/* Stats Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
 
-                <div className="bg-white border border-slate-200 rounded-xl p-5">
-                    <p className="text-sm text-slate-500">
+                <div
+                    className={`rounded-xl p-5 border ${
+                        darkMode
+                            ? "bg-slate-900 border-slate-800"
+                            : "bg-white border-slate-200"
+                    }`}
+                >
+                    <p
+                        className={`text-sm ${
+                            darkMode ? "text-slate-400" : "text-slate-500"
+                        }`}
+                    >
                         Total Tasks
                     </p>
 
-                    <p className="text-3xl font-bold text-slate-900 mt-2">
+                    <p
+                        className={`text-3xl font-bold mt-2 ${
+                            darkMode ? "text-white" : "text-slate-900"
+                        }`}
+                    >
                         {totalTasks}
                     </p>
 
@@ -177,12 +200,26 @@ function App() {
                 </div>
 
 
-                <div className="bg-white border border-slate-200 rounded-xl p-5">
-                    <p className="text-sm text-slate-500">
+                <div
+                    className={`rounded-xl p-5 border ${
+                        darkMode
+                            ? "bg-slate-900 border-slate-800"
+                            : "bg-white border-slate-200"
+                    }`}
+                >
+                    <p
+                        className={`text-sm ${
+                            darkMode ? "text-slate-400" : "text-slate-500"
+                        }`}
+                    >
                         Pending
                     </p>
 
-                    <p className="text-3xl font-bold text-slate-900 mt-2">
+                    <p
+                        className={`text-3xl font-bold mt-2 ${
+                            darkMode ? "text-white" : "text-slate-900"
+                        }`}
+                    >
                         {pendingTasks}
                     </p>
 
@@ -192,12 +229,26 @@ function App() {
                 </div>
 
 
-                <div className="bg-white border border-slate-200 rounded-xl p-5">
-                    <p className="text-sm text-slate-500">
+                <div
+                    className={`rounded-xl p-5 border ${
+                        darkMode
+                            ? "bg-slate-900 border-slate-800"
+                            : "bg-white border-slate-200"
+                    }`}
+                >
+                    <p
+                        className={`text-sm ${
+                            darkMode ? "text-slate-400" : "text-slate-500"
+                        }`}
+                    >
                         Completed
                     </p>
 
-                    <p className="text-3xl font-bold text-slate-900 mt-2">
+                    <p
+                        className={`text-3xl font-bold mt-2 ${
+                            darkMode ? "text-white" : "text-slate-900"
+                        }`}
+                    >
                         {completedTasks}
                     </p>
 
@@ -207,12 +258,26 @@ function App() {
                 </div>
 
 
-                <div className="bg-white border border-slate-200 rounded-xl p-5">
-                    <p className="text-sm text-slate-500">
+                <div
+                    className={`rounded-xl p-5 border ${
+                        darkMode
+                            ? "bg-slate-900 border-slate-800"
+                            : "bg-white border-slate-200"
+                    }`}
+                >
+                    <p
+                        className={`text-sm ${
+                            darkMode ? "text-slate-400" : "text-slate-500"
+                        }`}
+                    >
                         High Priority
                     </p>
 
-                    <p className="text-3xl font-bold text-slate-900 mt-2">
+                    <p
+                        className={`text-3xl font-bold mt-2 ${
+                            darkMode ? "text-white" : "text-slate-900"
+                        }`}
+                    >
                         {highPriorityTasks}
                     </p>
 
@@ -224,20 +289,37 @@ function App() {
             </div>
 
 
-                        {/* Dashboard Content */}
+            {/* Dashboard Content */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
 
                 {/* Upcoming Tasks */}
-                <div className="lg:col-span-2 bg-white border border-slate-200 rounded-xl">
+                <div
+                    className={`lg:col-span-2 rounded-xl border ${
+                        darkMode
+                            ? "bg-slate-900 border-slate-800"
+                            : "bg-white border-slate-200"
+                    }`}
+                >
 
-                    <div className="flex items-center justify-between px-6 py-5 border-b border-slate-200">
+                    <div
+                        className={`flex items-center justify-between px-6 py-5 border-b ${
+                            darkMode ? "border-slate-800" : "border-slate-200"
+                        }`}
+                    >
 
                         <div>
-                            <h3 className="font-semibold text-slate-900">
+                            <h3
+                                className={`font-semibold ${
+                                    darkMode ? "text-white" : "text-slate-900"
+                                }`}
+                            >
                                 Upcoming Tasks
                             </h3>
-
-                            <p className="text-sm text-slate-500 mt-1">
+                            <p
+                                className={`text-sm mt-1 ${
+                                    darkMode ? "text-slate-400" : "text-slate-500"
+                                }`}
+                            >
                                 Tasks you need to focus on
                             </p>
                             <div className="flex flex-wrap gap-2 mt-4">
@@ -246,11 +328,15 @@ function App() {
                                   <button
                                       key={filter}
                                       onClick={() => setTaskFilter(filter)}
-                                      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
-                                          taskFilter === filter
-                                              ? "bg-slate-900 text-white"
-                                              : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-                                      }`}
+                                        className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
+                                            taskFilter === filter
+                                                ? darkMode
+                                                    ? "bg-white text-slate-900"
+                                                    : "bg-slate-900 text-white"
+                                                : darkMode
+                                                    ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                                                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                                        }`}
                                   >
                                       {filter}
                                   </button>
@@ -263,14 +349,23 @@ function App() {
                                     placeholder="Search tasks..."
                                     value={searchQuery}
                                     onChange={(event) => setSearchQuery(event.target.value)}
-                                    className="w-full max-w-md px-4 py-2.5 border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-slate-200"
+                                    className={`w-full max-w-md px-4 py-2.5 rounded-lg outline-none border ${
+                                    darkMode
+                                        ? "bg-slate-800 border-slate-700 text-white placeholder:text-slate-400 focus:ring-2 focus:ring-slate-700"
+                                        : "bg-white border-slate-200 text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-slate-200"
+                                    }`}
                                 />
                             </div>
                         </div>
-
-                        <button className="text-sm text-slate-600 hover:text-slate-900">
-                            View all
-                        </button>
+                            <button
+                                className={`text-sm ${
+                                    darkMode
+                                        ? "text-slate-300 hover:text-white"
+                                        : "text-slate-600 hover:text-slate-900"
+                                }`}
+                            >
+                                View all
+                            </button>
 
                     </div>
 
@@ -293,10 +388,13 @@ function App() {
 
                         filteredTasks
                         .slice(0, 5).map((task) => (
-
                             <div
                                 key={task._id}
-                                className="px-4 sm:px-6 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 hover:bg-slate-50 transition"
+                                className={`px-4 sm:px-6 py-4 border-b flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 transition ${
+                                    darkMode
+                                        ? "border-slate-800 hover:bg-slate-800/50"
+                                        : "border-slate-100 hover:bg-slate-50"
+                                }`}
                             >
 
                                 <div className="flex items-start gap-3 min-w-0">
@@ -316,7 +414,9 @@ function App() {
                                             className={`font-medium truncate ${
                                                 task.completed
                                                     ? "text-slate-400 line-through"
-                                                    : "text-slate-900"
+                                                    : darkMode
+                                                        ? "text-white"
+                                                        : "text-slate-900"
                                             }`}
                                         >
                                             {task.title}
@@ -325,7 +425,9 @@ function App() {
                                             className={`text-sm mt-1 ${
                                                 task.completed
                                                     ? "text-slate-400"
-                                                    : "text-slate-500"
+                                                    : darkMode
+                                                        ? "text-slate-400"
+                                                        : "text-slate-500"
                                             }`}
                                         >
                                             {task.category} · {task.priority} Priority
@@ -388,9 +490,19 @@ function App() {
                 </div>
 
                 {/* Progress */}
-                <div className="bg-white border border-slate-200 rounded-xl p-6">
+                <div
+                    className={`rounded-xl border p-6 ${
+                        darkMode
+                            ? "bg-slate-900 border-slate-800"
+                            : "bg-white border-slate-200"
+                    }`}
+                >
 
-                    <h3 className="font-semibold text-slate-900">
+                    <h3
+                        className={`font-semibold ${
+                            darkMode ? "text-white" : "text-slate-900"
+                        }`}
+                    >
                         Your Progress
                     </h3>
                     <div className="mt-4">
@@ -399,18 +511,28 @@ function App() {
                                 Overall completion
                             </span>
 
-                            <span className="text-sm font-semibold text-slate-900">
+                            <span
+                                className={`text-sm font-semibold ${
+                                    darkMode ? "text-white" : "text-slate-900"
+                                }`}
+                            >
                                 {completionPercentage}%
                             </span>
                         </div>
 
-                        <div className="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
-                            <div
-                                className="h-full bg-slate-900 rounded-full transition-all duration-500"
-                                style={{
-                                    width: `${completionPercentage}%`
-                                }}
-                            ></div>
+                        <div
+                            className={`w-full h-3 rounded-full overflow-hidden ${
+                                darkMode ? "bg-slate-800" : "bg-slate-100"
+                            }`}
+                        >
+                        <div
+                            className={`h-full rounded-full transition-all duration-500 ${
+                                darkMode ? "bg-white" : "bg-slate-900"
+                            }`}
+                            style={{
+                                width: `${completionPercentage}%`
+                            }}
+                        ></div>
                         </div>
                     </div>
 
@@ -420,11 +542,19 @@ function App() {
 
                     <div className="flex justify-center py-8">
 
-                        <div className="w-36 h-36 rounded-full border-8 border-slate-200 flex items-center justify-center">
-
+                        
+                    <div
+                        className={`w-36 h-36 rounded-full border-8 flex items-center justify-center ${
+                            darkMode ? "border-slate-700" : "border-slate-200"
+                        }`}
+                    >
                             <div className="text-center">
 
-                                <p className="text-3xl font-bold text-slate-900">
+                                <p
+                                    className={`text-3xl font-bold ${
+                                        darkMode ? "text-white" : "text-slate-900"
+                                    }`}
+                                >
                                     {completionPercentage}%
                                 </p>
 
