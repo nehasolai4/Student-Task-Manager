@@ -1,13 +1,15 @@
 import { useState } from "react";
 
-function TaskForm({ onClose, onTaskCreated }) {
+function TaskForm({ onClose, onTaskCreated, onTaskUpdated, taskToEdit }) {
 
     const [formData, setFormData] = useState({
-        title: "",
-        description: "",
-        category: "Assignment",
-        priority: "Medium",
-        dueDate: ""
+        title: taskToEdit?.title || "",
+        description: taskToEdit?.description || "",
+        category: taskToEdit?.category || "Assignment",
+        priority: taskToEdit?.priority || "Medium",
+        dueDate: taskToEdit?.dueDate
+            ? taskToEdit.dueDate.split("T")[0]
+            : ""
     });
 
     const [error, setError] = useState("");
@@ -42,17 +44,29 @@ function TaskForm({ onClose, onTaskCreated }) {
         }
 
         try {
+            if (taskToEdit) {
+                const updatedTask = await onTaskUpdated(
+                    taskToEdit._id,
+                    formData
+                );
 
-            const newTask = await onTaskCreated(formData);
+                if (updatedTask) {
+                    onClose();
+                }
+            } else {
+                const newTask = await onTaskCreated(formData);
 
-            if (newTask) {
-                onClose();
+                if (newTask) {
+                    onClose();
+                }
             }
 
         } catch (error) {
-
-            setError("Failed to create task. Please try again.");
-
+            setError(
+                taskToEdit
+                    ? "Failed to update task. Please try again."
+                    : "Failed to create task. Please try again."
+            );
         }
 
     }
@@ -68,11 +82,13 @@ function TaskForm({ onClose, onTaskCreated }) {
 
                     <div>
                         <h2 className="text-lg font-semibold text-slate-900">
-                            Add New Task
+                            {taskToEdit ? "Edit Task" : "Add New Task"}
                         </h2>
 
                         <p className="text-sm text-slate-500 mt-1">
-                            Create a task and stay on track.
+                                {taskToEdit
+                                    ? "Update your task details."
+                                    : "Create a task and stay on track."}
                         </p>
                     </div>
 
@@ -217,7 +233,7 @@ function TaskForm({ onClose, onTaskCreated }) {
                             type="submit"
                             className="px-5 py-2.5 rounded-lg bg-slate-900 text-white font-medium hover:bg-slate-800"
                         >
-                            Create Task
+                            {taskToEdit ? "Save Changes" : "Create Task"}
                         </button>
 
                     </div>
