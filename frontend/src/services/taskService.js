@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/tasks";
+const API_URL = "https://student-task-manager-uwsb.onrender.com/api/tasks";
 
 export async function getTasks() {
     const response = await fetch(API_URL);
