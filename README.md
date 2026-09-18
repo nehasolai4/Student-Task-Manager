@@ -6,11 +6,9 @@ StudyFlow provides task management, priorities, due dates, filtering, search, pr
 
 ## 🚀 Live Demo
 
-**Frontend:** `YOUR_NETLIFY_URL`
+**Frontend:** `https://studyflow04.netlify.app/`
 
-**Backend API:** `YOUR_RENDER_URL`
-
-> Replace the placeholders above with your deployed URLs after deployment.
+**Backend API:** `https://student-task-manager-uwsb.onrender.com`
 
 ---
 
